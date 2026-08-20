@@ -498,14 +498,8 @@
         .hero-ctas {
             display: flex;
             gap: 10px;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .hero-ctas {
-                flex-wrap: wrap;
-            }
         }
 
         .btn {
@@ -773,6 +767,8 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid var(--border-soft);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .terminal-dots {
@@ -888,6 +884,27 @@
             color: #FFF;
             font-family: var(--mono);
             font-size: 12.5px;
+            min-width: 0;
+        }
+
+        @media (max-width: 640px) {
+            .terminal-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .terminal-quick-cmds {
+                width: 100%;
+            }
+
+            .terminal-body {
+                max-height: 220px;
+                font-size: 12px;
+            }
+
+            .terminal-input-row span {
+                display: none;
+            }
         }
 
         /* ---------- SDE & GenAI Pillars ---------- */
@@ -1036,6 +1053,7 @@
             border-bottom: 1px solid var(--border-soft);
             font-family: var(--mono);
             font-size: 13px;
+            gap: 12px;
         }
 
         .fact-k {
@@ -1043,6 +1061,7 @@
             text-transform: uppercase;
             letter-spacing: 0.06em;
             font-size: 11px;
+            flex-shrink: 0;
         }
 
         .fact-v {
@@ -1181,11 +1200,21 @@
             overflow: hidden;
             transform-style: preserve-3d;
             will-change: transform;
+            scroll-margin-top: 110px;
         }
 
         .project-card:hover {
             border-color: rgba(76, 141, 255, 0.4);
             box-shadow: 0 20px 40px -20px rgba(76, 141, 255, 0.25);
+        }
+
+        .project-card.card-match {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 1px rgba(76, 141, 255, 0.4), 0 20px 44px -18px rgba(76, 141, 255, 0.35);
+        }
+
+        .project-card.card-dim {
+            opacity: 0.35;
         }
 
         .proj-head {
@@ -1217,6 +1246,7 @@
             display: flex;
             gap: 10px;
             flex-shrink: 0;
+            flex-wrap: wrap;
         }
 
         .proj-links a {
@@ -1311,12 +1341,12 @@
             margin-bottom: 10px;
         }
 
-        /* ---------- Interactive Tech Stack Grid ---------- */
+        /* ---------- SKILLS: compact chip-cloud registry ---------- */
         .skills-filter-row {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
 
         .skill-filter-btn {
@@ -1329,406 +1359,129 @@
             color: var(--muted);
             cursor: pointer;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         .skill-filter-btn:hover,
         .skill-filter-btn.active {
-            background: rgba(76, 224, 210, 0.1);
+            background: rgba(76, 141, 255, 0.1);
             border-color: var(--cyan);
             color: var(--cyan);
         }
 
-        .skills-grid-interactive {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
-        }
-
-        .tech-card {
-            background: rgba(13, 21, 38, 0.7);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 15px 18px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: all 0.25s ease;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-        }
-
-        .tech-card:hover {
-            border-color: var(--blue);
-            background: rgba(76, 141, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px -6px rgba(76, 141, 255, 0.35);
-        }
-
-        .tech-icon-wrap {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: rgba(6, 11, 20, 0.8);
-            border: 1px solid var(--border-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: transform 0.25s ease;
-        }
-
-        .tech-card:hover .tech-icon-wrap {
-            transform: scale(1.08);
-            border-color: var(--blue);
-        }
-
-        .tech-icon-wrap svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        .tech-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .tech-name {
-            font-family: var(--display);
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 2px;
-        }
-
-        .tech-category {
-            font-family: var(--mono);
-            font-size: 10.5px;
-            color: var(--muted);
-        }
-
-        .tech-badge {
-            font-family: var(--mono);
-            font-size: 9.5px;
-            padding: 3px 8px;
-            border-radius: 12px;
-            background: rgba(76, 141, 255, 0.1);
-            color: var(--blue);
-            border: 1px solid rgba(76, 141, 255, 0.25);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            white-space: nowrap;
-        }
-
-        /* Compact Skill Matrix */
-        .skills-grid-compact {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-group-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 22px;
-            transition: all 0.3s ease;
-        }
-
-        .skill-group-card:hover {
-            border-color: var(--blue);
-            box-shadow: 0 8px 30px -10px rgba(76, 141, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .skill-group-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-soft);
-        }
-
-        .skill-group-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 8px;
-            background: rgba(76, 141, 255, 0.1);
-            border: 1px solid var(--border-bright);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            flex-shrink: 0;
-        }
-
-        .skill-group-title {
-            font-family: var(--display);
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .skill-group-sub {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 2px;
-        }
-
-        .skill-tags-wrapper {
+        .skill-cloud {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        /* ---------- Telemetry Inspector Dashboard ---------- */
-        .telemetry-wrapper {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 24px;
-            margin-top: 28px;
-        }
-
-        @media (max-width: 900px) {
-            .telemetry-wrapper {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .telemetry-selector-col {
-            background: var(--panel);
+            gap: 10px;
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            max-height: 540px;
+            background: var(--panel-2);
+            padding: 22px;
         }
 
-        .telemetry-tabs {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-soft);
-        }
-
-        .t-tab-btn {
+        .chip-compact {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
             font-family: var(--mono);
-            font-size: 11px;
-            padding: 5px 11px;
-            border-radius: 12px;
-            background: transparent;
-            border: 1px solid var(--border-soft);
-            color: var(--muted);
+            font-size: 11.5px;
+            font-weight: 500;
+            padding: 7px 13px 7px 9px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: rgba(13, 21, 38, 0.7);
+            color: var(--text);
             cursor: pointer;
             transition: all 0.2s ease;
-        }
-
-        .t-tab-btn.active, .t-tab-btn:hover {
-            border-color: var(--blue);
-            color: var(--blue);
-            background: rgba(76, 141, 255, 0.12);
-        }
-
-        .telemetry-tech-list {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            overflow-y: auto;
-            padding-right: 4px;
-        }
-
-        .telemetry-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            background: rgba(10, 16, 30, 0.6);
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        .telemetry-item:hover, .telemetry-item.active {
-            border-color: var(--blue);
-            background: rgba(76, 141, 255, 0.12);
-            box-shadow: 0 0 16px rgba(76, 141, 255, 0.25);
-            transform: translateX(3px);
-        }
-
-        .telemetry-item-name {
-            font-family: var(--mono);
-            font-size: 12.5px;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .telemetry-item.active .telemetry-item-name {
-            color: var(--blue);
-            font-weight: 600;
-        }
-
-        .telemetry-item-tag {
-            font-family: var(--mono);
-            font-size: 10px;
-            padding: 2px 7px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--muted);
-        }
-
-        .telemetry-item.active .telemetry-item-tag {
-            background: rgba(76, 141, 255, 0.2);
-            color: var(--blue);
-        }
-
-        /* Inspector Panel */
-        .telemetry-inspector-panel {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
             position: relative;
-            backdrop-filter: blur(12px);
         }
 
-        .inspector-header {
+        .chip-compact .ci {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-soft);
+            align-items: center;
+            justify-content: center;
         }
 
-        .inspector-badge {
+        .chip-compact .ci svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chip-compact .ci img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .chip-compact .ci svg.ci-fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .chip-compact:hover {
+            border-color: var(--blue);
+            background: rgba(76, 141, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -8px rgba(76, 141, 255, 0.45);
+        }
+
+        .chip-compact::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: calc(100% + 9px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: var(--panel);
+            border: 1px solid var(--border-bright);
+            color: var(--muted);
+            font-size: 10px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.18s ease;
+            z-index: 6;
+        }
+
+        .chip-compact:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .chip-compact.chip-hidden {
+            display: none;
+        }
+
+        .skill-hint {
             font-family: var(--mono);
             font-size: 11px;
-            color: var(--blue);
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-
-        .inspector-title {
-            font-family: var(--display);
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .inspector-status {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: #38EF7D;
+            color: var(--dim);
+            margin-top: 16px;
             display: flex;
             align-items: center;
             gap: 6px;
-            background: rgba(56, 239, 125, 0.1);
-            border: 1px solid rgba(56, 239, 125, 0.25);
-            padding: 5px 12px;
-            border-radius: 20px;
-            white-space: nowrap;
         }
 
-        .inspector-desc {
-            font-family: var(--sans);
-            font-size: 14.5px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
+        @media (max-width: 640px) {
+            .skill-cloud {
+                padding: 16px;
+                gap: 8px;
+            }
 
-        .inspector-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 12px;
-        }
+            .chip-compact {
+                font-size: 11px;
+                padding: 6px 11px 6px 8px;
+            }
 
-        .insp-metric-card {
-            background: rgba(6, 11, 20, 0.7);
-            border: 1px solid var(--border-soft);
-            padding: 12px;
-            border-radius: 8px;
-        }
-
-        .insp-m-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--dim);
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-
-        .insp-m-val {
-            font-family: var(--mono);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--blue);
-        }
-
-        .inspector-section-title {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--dim);
-            letter-spacing: 0.06em;
-            margin-top: 4px;
-        }
-
-        .inspector-projects {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .insp-proj-chip {
-            font-family: var(--mono);
-            font-size: 11.5px;
-            padding: 5px 13px;
-            border-radius: 6px;
-            background: rgba(76, 141, 255, 0.1);
-            border: 1px solid var(--border-bright);
-            color: var(--text);
-        }
-
-        .inspector-node-flow {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 14px;
-            background: rgba(6, 11, 20, 0.85);
-            border: 1px solid var(--border-soft);
-            border-radius: 8px;
-        }
-
-        .flow-node {
-            font-family: var(--mono);
-            font-size: 11.5px;
-            padding: 7px 13px;
-            border-radius: 6px;
-            background: rgba(13, 21, 38, 0.8);
-            border: 1px solid var(--border);
-            color: var(--muted);
-            white-space: nowrap;
-        }
-
-        .flow-node.active {
-            border-color: var(--blue);
-            color: var(--blue);
-            background: rgba(76, 141, 255, 0.15);
-            box-shadow: 0 0 12px rgba(76, 141, 255, 0.3);
-            font-weight: 600;
-        }
-
-        .flow-arrow {
-            color: var(--blue);
-            font-family: var(--mono);
-            font-size: 12px;
+            .chip-compact::after {
+                display: none;
+            }
         }
 
         /* ---------- publications ---------- */
@@ -1782,7 +1535,7 @@
             font-family: var(--mono);
             font-size: 10.5px;
             color: var(--cyan);
-            border: 1px solid rgba(76, 224, 210, 0.35);
+            border: 1px solid rgba(76, 141, 255, 0.35);
             padding: 4px 10px;
             border-radius: 5px;
             white-space: nowrap;
@@ -1803,6 +1556,12 @@
             background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(76, 141, 255, 0.08), transparent 70%), var(--panel-2);
             position: relative;
             overflow: hidden;
+        }
+
+        @media (max-width: 640px) {
+            .contact-box {
+                padding: 40px 20px;
+            }
         }
 
         .contact-box h2 {
@@ -1829,6 +1588,7 @@
             position: fixed;
             bottom: 24px;
             right: 24px;
+            left: 24px;
             z-index: 1000;
             background: var(--panel);
             border: 1px solid var(--cyan);
@@ -1837,13 +1597,15 @@
             font-size: 12.5px;
             padding: 10px 18px;
             border-radius: 6px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(76, 224, 210, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(76, 141, 255, 0.3);
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
+            max-width: 360px;
+            margin-left: auto;
         }
 
         .toast-notify.show {
@@ -1860,7 +1622,28 @@
             border-top: 1px solid var(--border-soft);
         }
 
+        /* ---------- global mobile safety net ---------- */
+        img,
+        svg {
+            max-width: 100%;
+        }
 
+        @media (max-width: 480px) {
+            .hero-name {
+                font-size: clamp(32px, 11vw, 44px);
+            }
+
+            .avatar-frame {
+                width: 108px;
+                height: 108px;
+            }
+
+            .btn,
+            .btn-icon-pill {
+                font-size: 11.5px;
+                padding: 9px 14px;
+            }
+        }
     </style>
 </head>
 
@@ -1916,23 +1699,46 @@
 
                 <div class="hero-ctas reveal">
                     <a href="#projects" class="btn btn-primary">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
                         <span>View Projects</span>
                     </a>
                     <a href="Achal_Nawal_Resume.pdf" target="_blank" rel="noopener" class="btn btn-icon-pill">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
                         <span>Resume PDF ↗</span>
                     </a>
-                    <a href="https://github.com/Achalnawal2745" target="_blank" rel="noopener" class="btn btn-icon-pill">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <a href="https://github.com/Achalnawal2745" target="_blank" rel="noopener"
+                        class="btn btn-icon-pill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
                         <span>GitHub ↗</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/achal-nawal-102021286/" target="_blank" rel="noopener" class="btn btn-icon-pill">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <a href="https://www.linkedin.com/in/achal-nawal-102021286/" target="_blank" rel="noopener"
+                        class="btn btn-icon-pill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
                         <span>LinkedIn ↗</span>
                     </a>
-                    <a href="mailto:achalnawal2005@gmail.com" class="btn btn-icon-pill copyable" data-copy="achalnawal2005@gmail.com">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <a href="mailto:achalnawal2005@gmail.com" class="btn btn-icon-pill copyable"
+                        data-copy="achalnawal2005@gmail.com">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
                         <span>Email ↗</span>
                     </a>
                 </div>
@@ -2038,9 +1844,19 @@
                             <div class="profile-role">Computer Engineering · SDE &amp; GenAI Systems Engineer</div>
                         </div>
                     </div>
-                    <p>I'm a Computer Engineering student at <b>Thapar Institute of Engineering &amp; Technology</b> who spends most of my time in the space between <b>LLM application development</b> and <b>systems engineering (SDE)</b> — not just prompting a model, but building the asynchronous pipelines, guardrails, and interfaces around it so it actually works reliably in production.</p>
-                    <p>During my internship at <b>AmberFlux EdgeAI</b>, I built document-extraction workflows using Azure OpenAI and Azure Document Intelligence, along with a concurrent multi-threaded pipeline that pushes PDFs, emails, and technical drawings through business-rule and data-quality checks at scale. Through research collaboration at <b>Thapar Institute</b> with the <b>University of Queensland</b>, I worked on adversarial training for a multimodal deepfake detector — research accepted at <b>CVPR 2026</b>.</p>
-                    <p>Outside of internships, I design and build full systems on my own: a real-time voice-controlled desktop AI assistant, a multi-source RAG workspace, an autonomous DevSecOps pipeline, and a natural-language interface over oceanographic sensor data.</p>
+                    <p>I'm a Computer Engineering student at <b>Thapar Institute of Engineering &amp; Technology</b> who
+                        spends most of my time in the space between <b>LLM application development</b> and <b>systems
+                            engineering (SDE)</b> — not just prompting a model, but building the asynchronous pipelines,
+                        guardrails, and interfaces around it so it actually works reliably in production.</p>
+                    <p>During my internship at <b>AmberFlux EdgeAI</b>, I built document-extraction workflows using
+                        Azure OpenAI and Azure Document Intelligence, along with a concurrent multi-threaded pipeline
+                        that pushes PDFs, emails, and technical drawings through business-rule and data-quality checks
+                        at scale. Through research collaboration at <b>Thapar Institute</b> with the <b>University of
+                            Queensland</b>, I worked on adversarial training for a multimodal deepfake detector —
+                        research accepted at <b>CVPR 2026</b>.</p>
+                    <p>Outside of internships, I design and build full systems on my own: a real-time voice-controlled
+                        desktop AI assistant, a multi-source RAG workspace, an autonomous DevSecOps pipeline, and a
+                        natural-language interface over oceanographic sensor data.</p>
                 </div>
                 <div class="facts">
                     <div class="fact"><span class="fact-k">Education</span><span class="fact-v">B.E. Computer
@@ -2099,7 +1915,8 @@
                     <div class="tl-dot"></div>
                     <div class="tl-period">Jul 2025 — Dec 2025</div>
                     <div class="tl-role">AI/ML &amp; Cybersecurity Research Intern</div>
-                    <div class="tl-org">University of Queensland (via Thapar Institute of Engineering &amp; Technology)</div>
+                    <div class="tl-org">University of Queensland (via Thapar Institute of Engineering &amp; Technology)
+                    </div>
                     <div class="tl-stack">
                         <span class="chip">PyTorch</span><span class="chip">Adversarial ML</span><span
                             class="chip">CNNs</span><span class="chip">Multimodal Detection</span>
@@ -2256,7 +2073,8 @@
                     </div>
                     <div class="proj-links">
                         <a href="https://patchforge-ai.vercel.app/" target="_blank" rel="noopener">Live Demo ↗</a>
-                        <a href="https://github.com/Achalnawal2745/patchforge-ai" target="_blank" rel="noopener">GitHub ↗</a>
+                        <a href="https://github.com/Achalnawal2745/patchforge-ai" target="_blank" rel="noopener">GitHub
+                            ↗</a>
                     </div>
                 </div>
                 <p class="proj-desc">An autonomous multi-agent DevSecOps pipeline that writes code, audits it for
@@ -2325,15 +2143,17 @@
         </div>
     </section>
 
-    <!-- INTERACTIVE SKILLS REGISTRY (FULL SVG TECH LOGO GRID) -->
-    <section id="skills" class="section-pad" style="background:linear-gradient(180deg, transparent, rgba(76,141,255,0.02), transparent);">
+    <!-- SKILLS: compact interactive chip cloud -->
+    <section id="skills" class="section-pad"
+        style="background:linear-gradient(180deg, transparent, rgba(76,141,255,0.02), transparent);">
         <div class="wrap">
-            <div class="eyebrow reveal">04 / Skill Matrix</div>
+            <div class="eyebrow reveal">04 / Skill Registry</div>
             <h2 class="section-title reveal">Tools &amp; Technologies</h2>
-            <p class="section-sub reveal">Interactive tech stack matrix categorized across programming languages, AI/ML models, cloud platforms, data engineering, networking, and developer tools.</p>
+            <p class="section-sub reveal">Filter by category, or click any tag to jump to the projects that actually use
+                it.</p>
 
             <div class="skills-filter-row reveal">
-                <button class="skill-filter-btn active" data-filter="all">All Tech</button>
+                <button class="skill-filter-btn active" data-filter="all">All</button>
                 <button class="skill-filter-btn" data-filter="languages">Languages</button>
                 <button class="skill-filter-btn" data-filter="genai">GenAI &amp; AI/ML</button>
                 <button class="skill-filter-btn" data-filter="cloud">Cloud &amp; Platforms</button>
@@ -2342,310 +2162,199 @@
                 <button class="skill-filter-btn" data-filter="tools">Frameworks &amp; Tools</button>
             </div>
 
-            <div class="skills-grid-interactive reveal" id="skillsContainer">
-                <!-- LANGUAGES -->
-                <div class="tech-card" data-cat="languages">
-                    <div class="tech-icon-wrap" style="color:#3776AB">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.91 0c-3.13 0-5.02.26-5.83.69-1.22.65-1.4 1.76-1.4 3.73v2.85h7.4v.93H3.66c-1.97 0-3.08.7-3.73 1.92C-.5 10.99-.48 13-.48 15.65c0 2.21.46 3.71 1.4 4.4.94.7 2.45.7 4.16.7h2.5v-3.72c0-2.14 1.83-3.95 3.96-3.95h7.32c.98 0 1.78-.8 1.78-1.78V4.42c0-1.89-.9-3.21-2.4-3.73C16.94.26 15.04 0 11.91 0zm-2.02 1.86c.61 0 1.1.49 1.1 1.1 0 .6-.49 1.1-1.1 1.1s-1.1-.5-1.1-1.1c0-.61.49-1.1 1.1-1.1z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Python</div>
-                        <div class="tech-category">Languages &amp; Core</div>
-                    </div>
-                    <span class="tech-badge">Advanced</span>
-                </div>
+            <div class="skill-cloud reveal" id="skillsContainer">
+                <span class="chip-compact" data-cat="languages" data-skill="Python"
+                    data-tip="Languages · Advanced"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/python/3776AB" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#4C8DFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Python</span>
+                <span class="chip-compact" data-cat="languages" data-skill="C++" data-tip="Languages · Core"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/cplusplus/00599C" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#4C8DFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>C++ / C</span>
+                <span class="chip-compact" data-cat="languages" data-skill="JavaScript" data-tip="Languages · Web"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#4C8DFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>JavaScript</span>
+                <span class="chip-compact" data-cat="languages" data-skill="TypeScript" data-tip="Languages · Web"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#4C8DFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>TypeScript</span>
+                <span class="chip-compact" data-cat="languages" data-skill="HTML" data-tip="Languages · Web"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/html5/E34F26" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#4C8DFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>HTML / CSS</span>
+                <span class="chip-compact" data-cat="languages" data-skill="SQL" data-tip="Languages · Database"><span
+                        class="ci"><svg style="color:#4C8DFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>SQL</span>
 
-                <div class="tech-card" data-cat="languages">
-                    <div class="tech-icon-wrap" style="color:#00599C">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.37 13.9v-3.8h-1.9v3.8h-3.8v1.9h3.8v3.8h1.9v-3.8h3.8v-1.9h-3.8zm-7.6 0v-3.8h-1.9v3.8H9.07v1.9h3.8v3.8h1.9v-3.8h3.8v-1.9h-3.8zM11.87 0C5.32 0 0 5.32 0 11.87s5.32 11.87 11.87 11.87c3.9 0 7.37-1.9 9.53-4.82l-2.9-2.05c-1.5 2.05-3.9 3.37-6.63 3.37-4.62 0-8.37-3.75-8.37-8.37s3.75-8.37 8.37-8.37c2.73 0 5.13 1.32 6.63 3.37l2.9-2.05C19.24 1.9 15.77 0 11.87 0z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">C++ / C</div>
-                        <div class="tech-category">Languages &amp; Core</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
+                <span class="chip-compact" data-cat="genai" data-skill="LLM" data-tip="GenAI · Advanced"><span
+                        class="ci"><svg style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>LLM App Development</span>
+                <span class="chip-compact" data-cat="genai" data-skill="RAG" data-tip="GenAI · Production"><span
+                        class="ci"><svg style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>RAG Pipelines</span>
+                <span class="chip-compact" data-cat="genai" data-skill="Prompt" data-tip="GenAI · Production"><span
+                        class="ci"><svg style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Prompt Automation</span>
+                <span class="chip-compact" data-cat="genai" data-skill="PyTorch" data-tip="GenAI · Research"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/pytorch/EE4C2C" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>PyTorch</span>
+                <span class="chip-compact" data-cat="genai" data-skill="Scikit-learn" data-tip="GenAI · Research"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/scikitlearn/F7931E" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Scikit-learn</span>
+                <span class="chip-compact" data-cat="genai" data-skill="OpenCV"
+                    data-tip="Computer Vision · Production"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/opencv/5C3EE8" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>OpenCV</span>
+                <span class="chip-compact" data-cat="genai" data-skill="MediaPipe"
+                    data-tip="Computer Vision · Production"><span class="ci"><svg style="color:#F5A623"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>MediaPipe</span>
+                <span class="chip-compact" data-cat="genai" data-skill="YOLOv8" data-tip="Computer Vision · Core"><span
+                        class="ci"><svg style="color:#F5A623" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>YOLOv8</span>
 
-                <div class="tech-card" data-cat="languages">
-                    <div class="tech-icon-wrap" style="color:#F7DF1E">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 3h18v18H3V3zm9.64 12.3c.47.78 1.13 1.32 2.21 1.32.93 0 1.52-.47 1.52-1.1 0-.75-.6-1.02-1.61-1.46l-.55-.24c-1.6-.68-2.65-1.52-2.65-3.32 0-1.83 1.42-3.23 3.65-3.23 1.63 0 2.7.58 3.42 1.83l-1.67 1.07c-.4-.73-.95-1.03-1.74-1.03-.77 0-1.25.43-1.25.98 0 .68.48.95 1.52 1.38l.55.23c1.9.82 2.79 1.68 2.79 3.4 0 2.03-1.58 3.35-4.08 3.35-2.28 0-3.6-1.12-4.22-2.38l1.7-1.03zm-5.75.14c.33.57.65.98 1.3 1.3.52.25 1.2.37 2.15.37V19c-1.45 0-2.68-.27-3.55-.83-1.18-.77-1.68-1.92-1.7-3.73h1.8zm.05-6.17h2.08v4.94H6.94V9.27z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">JavaScript &amp; HTML/CSS</div>
-                        <div class="tech-category">Languages &amp; Core</div>
-                    </div>
-                    <span class="tech-badge">Web</span>
-                </div>
+                <span class="chip-compact" data-cat="cloud" data-skill="Azure OpenAI"
+                    data-tip="Cloud · Enterprise"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#38EF7D" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Azure OpenAI</span>
+                <span class="chip-compact" data-cat="cloud" data-skill="Azure Document Intelligence"
+                    data-tip="Cloud · Enterprise"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#38EF7D" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Azure Doc Intelligence</span>
+                <span class="chip-compact" data-cat="cloud" data-skill="Azure Service Bus"
+                    data-tip="Cloud · Enterprise"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#38EF7D" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Azure Service Bus</span>
+                <span class="chip-compact" data-cat="cloud" data-skill="Gemini" data-tip="Cloud · Production"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#38EF7D" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Google Gemini API</span>
 
-                <div class="tech-card" data-cat="languages">
-                    <div class="tech-icon-wrap" style="color:#4479A1">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 18.5c-3.59 0-6.5-2.91-6.5-6.5S8.41 5.5 12 5.5s6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">SQL</div>
-                        <div class="tech-category">Languages &amp; Core</div>
-                    </div>
-                    <span class="tech-badge">Database</span>
-                </div>
+                <span class="chip-compact" data-cat="data" data-skill="PostgreSQL" data-tip="Data · Core"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#9D7BFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>PostgreSQL / MySQL</span>
+                <span class="chip-compact" data-cat="data" data-skill="ChromaDB" data-tip="Vector DB · Core"><span
+                        class="ci"><svg style="color:#9D7BFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>ChromaDB</span>
+                <span class="chip-compact" data-cat="data" data-skill="Pipeline" data-tip="Data · Production"><span
+                        class="ci"><svg style="color:#9D7BFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Pipeline Automation</span>
+                <span class="chip-compact" data-cat="data" data-skill="Streamlit"
+                    data-tip="Dashboards · Production"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/streamlit/FF4B4B" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#9D7BFF" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Streamlit</span>
 
-                <!-- GENAI & AI/ML -->
-                <div class="tech-card" data-cat="genai">
-                    <div class="tech-icon-wrap" style="color:#4C8DFF">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">LLM App Development</div>
-                        <div class="tech-category">GenAI &amp; AI/ML</div>
-                    </div>
-                    <span class="tech-badge">Advanced</span>
-                </div>
+                <span class="chip-compact" data-cat="systems" data-skill="WebSockets"
+                    data-tip="Systems · Production"><span class="ci"><svg style="color:#4CE0D2" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>WebSockets</span>
+                <span class="chip-compact" data-cat="systems" data-skill="REST" data-tip="Systems · Production"><span
+                        class="ci"><svg style="color:#4CE0D2" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>REST APIs</span>
+                <span class="chip-compact" data-cat="systems" data-skill="UIAutomation"
+                    data-tip="Desktop · Advanced"><span class="ci"><img src="https://cdn.simpleicons.org/windows/0078D4"
+                            alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#4CE0D2" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Windows UIAutomation</span>
 
-                <div class="tech-card" data-cat="genai">
-                    <div class="tech-icon-wrap" style="color:#4C8DFF">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">RAG Pipelines</div>
-                        <div class="tech-category">GenAI &amp; AI/ML</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="genai">
-                    <div class="tech-icon-wrap" style="color:#F5A623">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Prompt-based Automation</div>
-                        <div class="tech-category">GenAI &amp; AI/ML</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="genai">
-                    <div class="tech-icon-wrap" style="color:#EE4C2C">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.92 0a11.96 11.96 0 00-6.17 1.74l3.12 3.12a7.6 7.6 0 013.05-.64 7.69 7.69 0 017.69 7.69c0 1.8-.62 3.46-1.67 4.77l3.05 3.05A11.95 11.95 0 0024 11.91C24 5.33 19.04.38 12.92 0zm-2.05 3.73L7.75 6.85A7.63 7.63 0 004.22 11.9a7.69 7.69 0 007.69 7.69c1.07 0 2.08-.22 3.01-.62l3.14 3.14a11.96 11.96 0 01-6.15 1.7C5.33 23.81.38 18.86.38 12.74c0-3.64 1.63-6.91 4.2-9.01z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">PyTorch &amp; Scikit-learn</div>
-                        <div class="tech-category">GenAI &amp; AI/ML</div>
-                    </div>
-                    <span class="tech-badge">Research</span>
-                </div>
-
-                <div class="tech-card" data-cat="genai">
-                    <div class="tech-icon-wrap" style="color:#38EF7D">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">OpenCV &amp; MediaPipe</div>
-                        <div class="tech-category">Computer Vision &amp; HCI</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="genai">
-                    <div class="tech-icon-wrap" style="color:#00B4D8">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">YOLOv8</div>
-                        <div class="tech-category">Object Detection &amp; Vision</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
-
-                <!-- CLOUD & AI PLATFORMS -->
-                <div class="tech-card" data-cat="cloud">
-                    <div class="tech-icon-wrap" style="color:#0078D4">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.48 19.53H0l8.9-15.06h5.48l-8.9 15.06zm13.04 0L9.62 4.47h5.48l8.9 15.06H18.52z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Azure OpenAI</div>
-                        <div class="tech-category">Cloud &amp; AI Platforms</div>
-                    </div>
-                    <span class="tech-badge">Enterprise</span>
-                </div>
-
-                <div class="tech-card" data-cat="cloud">
-                    <div class="tech-icon-wrap" style="color:#0078D4">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Azure Document Intelligence</div>
-                        <div class="tech-category">Cloud &amp; AI Platforms</div>
-                    </div>
-                    <span class="tech-badge">Enterprise</span>
-                </div>
-
-                <div class="tech-card" data-cat="cloud">
-                    <div class="tech-icon-wrap" style="color:#0078D4">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v12H4z" fill="none"/><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Azure Service Bus</div>
-                        <div class="tech-category">Cloud &amp; AI Platforms</div>
-                    </div>
-                    <span class="tech-badge">Enterprise</span>
-                </div>
-
-                <div class="tech-card" data-cat="cloud">
-                    <div class="tech-icon-wrap" style="color:#8E44AD">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l10-5-10-5-10 5 10 5zm0 2L2 18l10 5 10-5-10-5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Google Gemini API</div>
-                        <div class="tech-category">Multimodal LLM &amp; Live Audio</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <!-- DATA & ANALYTICS -->
-                <div class="tech-card" data-cat="data">
-                    <div class="tech-icon-wrap" style="color:#336791">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 4.19 2.14 7.89 5.4 10.05.51.35 1.13.55 1.77.55 1.48 0 2.76-1.04 3.08-2.48l.06-.27c.18-.83.84-1.46 1.69-1.46s1.51.63 1.69 1.46l.06.27c.32 1.44 1.6 2.48 3.08 2.48.64 0 1.26-.2 1.77-.55C21.86 19.89 24 16.19 24 12 24 5.37 18.63 0 12 0z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">PostgreSQL &amp; MySQL</div>
-                        <div class="tech-category">Data &amp; Analytics</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
-
-                <div class="tech-card" data-cat="data">
-                    <div class="tech-icon-wrap" style="color:#4C8DFF">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">ChromaDB</div>
-                        <div class="tech-category">Vector Databases &amp; Embeddings</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
-
-                <div class="tech-card" data-cat="data">
-                    <div class="tech-icon-wrap" style="color:#F5A623">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Data Pipeline Automation</div>
-                        <div class="tech-category">ETL &amp; NetCDF Pipelines</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="data">
-                    <div class="tech-icon-wrap" style="color:#FF4B4B">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Dashboarding (Streamlit)</div>
-                        <div class="tech-category">Analytics &amp; Dashboards</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <!-- NETWORKING & SYSTEMS -->
-                <div class="tech-card" data-cat="systems">
-                    <div class="tech-icon-wrap" style="color:#4C8DFF">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">WebSockets</div>
-                        <div class="tech-category">Real-Time Streaming</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="systems">
-                    <div class="tech-icon-wrap" style="color:#009688">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.82 5.4l4.28 6.42h-3.74v6.78L9.08 12.18h3.74V5.4z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">REST APIs</div>
-                        <div class="tech-category">Microservices &amp; Systems</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="systems">
-                    <div class="tech-icon-wrap" style="color:#0078D4">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4h-13.051M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.851"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Windows UIAutomation</div>
-                        <div class="tech-category">Desktop Automation</div>
-                    </div>
-                    <span class="tech-badge">Advanced</span>
-                </div>
-
-                <!-- FRAMEWORKS & TOOLS -->
-                <div class="tech-card" data-cat="tools">
-                    <div class="tech-icon-wrap" style="color:#009688">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 18.5c-3.59 0-6.5-2.91-6.5-6.5S8.41 5.5 12 5.5s6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">FastAPI &amp; Flask</div>
-                        <div class="tech-category">Python Frameworks</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="tools">
-                    <div class="tech-icon-wrap" style="color:#41CD52">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l10-5-10-5-10 5 10 5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">PyQt6</div>
-                        <div class="tech-category">Desktop GUI &amp; Multithreading</div>
-                    </div>
-                    <span class="tech-badge">Production</span>
-                </div>
-
-                <div class="tech-card" data-cat="tools">
-                    <div class="tech-icon-wrap" style="color:#4C8DFF">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Docling &amp; RapidFuzz</div>
-                        <div class="tech-category">Document Parsing &amp; Fuzzy Search</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
-
-                <div class="tech-card" data-cat="tools">
-                    <div class="tech-icon-wrap" style="color:#F5A623">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">NetworkX</div>
-                        <div class="tech-category">Graph Algorithms &amp; Networks</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
-
-                <div class="tech-card" data-cat="tools">
-                    <div class="tech-icon-wrap" style="color:#F05032">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.218 1.384-.062 1.896.449.516.516.668 1.256.452 1.9l2.64 2.64c.644-.217 1.383-.062 1.896.45.717.717.717 1.88 0 2.598-.718.717-1.88.717-2.597 0-.528-.528-.674-1.286-.437-1.928l-2.47-2.47-.003.004v6.62c.21.106.402.253.56.411.718.718.718 1.88 0 2.598-.717.717-1.88.717-2.597 0-.718-.718-.718-1.88 0-2.598.172-.172.378-.32.6-.425V8.895c-.222-.105-.428-.253-.6-.425-.528-.528-.674-1.286-.437-1.928L8.03 3.905l-6.84 6.84c-.603.604-.603 1.582 0 2.187l10.48 10.48c.604.603 1.582.603 2.188 0l10.48-10.48c.603-.604.603-1.582 0-2.187z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Git &amp; GitHub</div>
-                        <div class="tech-category">Version Control &amp; CI/CD</div>
-                    </div>
-                    <span class="tech-badge">Core</span>
-                </div>
-
-                <div class="tech-card" data-cat="tools">
-                    <div class="tech-icon-wrap" style="color:#2496ED">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.98 11.08h2.09v1.97h-2.09zm-2.83 0h2.09v1.97h-2.09zm-2.83 0h2.09v1.97H8.32zm-2.83 0h2.09v1.97H5.49zm8.49-2.67h2.09v1.97h-2.09zm-2.83 0h2.09v1.97h-2.09zm-2.83 0h2.09v1.97H8.32zM12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0z"/></svg>
-                    </div>
-                    <div class="tech-info">
-                        <div class="tech-name">Docker &amp; Postman</div>
-                        <div class="tech-category">Containers &amp; API Testing</div>
-                    </div>
-                    <span class="tech-badge">DevOps</span>
-                </div>
+                <span class="chip-compact" data-cat="tools" data-skill="FastAPI"
+                    data-tip="Frameworks · Production"><span class="ci"><img
+                            src="https://cdn.simpleicons.org/fastapi/009688" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#FF6B6B" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>FastAPI / Flask</span>
+                <span class="chip-compact" data-cat="tools" data-skill="React" data-tip="Frameworks · Production"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#FF6B6B" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>React / Vite</span>
+                <span class="chip-compact" data-cat="tools" data-skill="PyQt6" data-tip="Desktop GUI · Production"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/qt/41CD52" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#FF6B6B" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>PyQt6</span>
+                <span class="chip-compact" data-cat="tools" data-skill="Docling"
+                    data-tip="Document Parsing · Core"><span class="ci"><svg style="color:#FF6B6B" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Docling</span>
+                <span class="chip-compact" data-cat="tools" data-skill="NetworkX"
+                    data-tip="Graph Algorithms · Core"><span class="ci"><svg style="color:#FF6B6B" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>NetworkX</span>
+                <span class="chip-compact" data-cat="tools" data-skill="RapidFuzz"
+                    data-tip="Fuzzy Matching · Core"><span class="ci"><svg style="color:#FF6B6B" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>RapidFuzz</span>
+                <span class="chip-compact" data-cat="tools" data-skill="Git" data-tip="Version Control · Core"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/github/FFFFFF" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#FF6B6B" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Git / GitHub</span>
+                <span class="chip-compact" data-cat="tools" data-skill="Docker" data-tip="DevOps · Core"><span
+                        class="ci"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="" loading="lazy"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><svg
+                            class="ci-fallback" style="color:#FF6B6B" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg></span>Docker / Postman</span>
             </div>
+            <div class="skill-hint">→ click a tag to see which projects actually use it</div>
         </div>
     </section>
 
@@ -2693,20 +2402,34 @@
             <h2>Let's build something.</h2>
             <p>Actively looking for SDE, GenAI Systems, and Software Engineering roles. Reach out.</p>
             <div class="contact-links">
-                <a href="mailto:achalnawal2005@gmail.com" class="btn btn-primary copyable" data-copy="achalnawal2005@gmail.com">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:achalnawal2005@gmail.com" class="btn btn-primary copyable"
+                    data-copy="achalnawal2005@gmail.com">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
                     <span>Email Me</span>
                 </a>
                 <a href="https://github.com/Achalnawal2745" target="_blank" rel="noopener" class="btn btn-icon-pill">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
                     <span>GitHub ↗</span>
                 </a>
-                <a href="https://www.linkedin.com/in/achal-nawal-102021286/" target="_blank" rel="noopener" class="btn btn-icon-pill">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <a href="https://www.linkedin.com/in/achal-nawal-102021286/" target="_blank" rel="noopener"
+                    class="btn btn-icon-pill">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
                     <span>LinkedIn ↗</span>
                 </a>
                 <a href="tel:+916367157965" class="btn btn-icon-pill copyable" data-copy="+91 63671 57965">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
                     <span>+91 63671 57965</span>
                 </a>
             </div>
@@ -2875,9 +2598,9 @@
             });
         });
 
-        // ---------- Interactive Skills Filter ----------
+        // ---------- Interactive Skills Filter (compact chip cloud) ----------
         const filterBtns = document.querySelectorAll('.skill-filter-btn');
-        const techCards = document.querySelectorAll('.tech-card');
+        const techChips = document.querySelectorAll('.chip-compact');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -2885,13 +2608,38 @@
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
 
-                techCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.cat === filter) {
-                        card.style.display = 'flex';
+                techChips.forEach(chip => {
+                    if (filter === 'all' || chip.dataset.cat === filter) {
+                        chip.classList.remove('chip-hidden');
                     } else {
-                        card.style.display = 'none';
+                        chip.classList.add('chip-hidden');
                     }
                 });
+            });
+        });
+
+        // ---------- skill chip -> project highlight ----------
+        const projectCards = Array.from(document.querySelectorAll('.project-card'));
+        function getCardStackText(card) {
+            return Array.from(card.querySelectorAll('.proj-stack .chip')).map(c => c.textContent.toLowerCase());
+        }
+        techChips.forEach(chip => {
+            const key = chip.dataset.skill.toLowerCase();
+            const matches = projectCards.filter(card => getCardStackText(card).some(t => t.includes(key) || key.includes(t)));
+            chip.addEventListener('click', () => {
+                if (matches.length === 0) {
+                    showToast(`No shipped project uses "${chip.dataset.skill}" yet`);
+                    return;
+                }
+                projectCards.forEach(card => {
+                    card.classList.remove('card-match', 'card-dim');
+                    if (matches.includes(card)) card.classList.add('card-match');
+                    else card.classList.add('card-dim');
+                });
+                matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    projectCards.forEach(card => card.classList.remove('card-match', 'card-dim'));
+                }, 2600);
             });
         });
 
@@ -2967,7 +2715,7 @@
             h = canvas.height = Math.min(window.innerHeight * 1.1, 900);
         }
         function initNodes() {
-            const count = window.innerWidth < 760 ? 22 : 42;
+            const count = window.innerWidth < 760 ? 18 : 42;
             nodes = Array.from({ length: count }, () => ({
                 x: Math.random() * w, y: Math.random() * h,
                 vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15,
@@ -3039,7 +2787,7 @@
             animateGlow();
         }
 
-        // ---------- project card tilt ----------
+        // ---------- project card tilt (desktop only) ----------
         if (window.matchMedia('(hover: hover)').matches) {
             document.querySelectorAll('.project-card').forEach(card => {
                 card.addEventListener('mousemove', (e) => {
@@ -3075,12 +2823,7 @@
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(text);
                     }
-                    showToast(`✓ Opening mail app (${text} copied)`);
-                }
-                const href = el.getAttribute('href');
-                if (href && href.startsWith('mailto:')) {
-                    e.preventDefault();
-                    window.location.href = href;
+                    showToast(`✓ ${text} copied`);
                 }
             });
         });
